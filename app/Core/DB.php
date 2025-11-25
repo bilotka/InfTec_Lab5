@@ -51,9 +51,8 @@ class DB
 
         if ($result !== false) {
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } else {
-            return false;
         }
+        return false;
     }
 
     /**
@@ -64,8 +63,7 @@ class DB
     {
         $dbh = $this->getConnection();
         $stmt = $dbh->prepare($sql);
-        $result = $stmt->execute($parameters);
-        return $result;
+        return $stmt->execute($parameters);
     }
 
 
@@ -81,6 +79,7 @@ class DB
         $statement = $dbh->prepare($sql);
 
         $statement->execute(array($id));
+        return $statement->execute(array($id));
     }
 
     public function updateEntity(DbModelInterface $model, int $id, $values = [])
